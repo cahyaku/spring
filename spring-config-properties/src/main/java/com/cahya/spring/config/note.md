@@ -191,3 +191,14 @@ profile bisa lebih dari satu, jadi bisa mengaktifkan beberapa profile sekaligus.
 > > Contoh: pada package profileenvironment -> class ProfileEnvironmentTest
 
 ## Profile Properties File
+```
+- Dengan fitur profile, kita bisa membuat file properties yang sesuai dengan profile yang aktif.
+- Penamaan properties file adalah application-{profile}.properties.
+- Misal active profile adalah dev, maka application-dev.properties akan digunakan.
+```
+>> Contoh: pada folder main -> resources buat file:
+> > 1. application-production.properties
+> > 2. application-test.properties
+> > Misalnya akan membuat beberapa profile, misalnya default, production, dan test.
+> > Jadi tambahkan profile.default pada application.properties
+> > Buat komponen, pada folder test -> package profileproperties -> class ProfilePropertiesTest
