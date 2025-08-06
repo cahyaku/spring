@@ -70,3 +70,128 @@ JADI kita tidak perlu membuatnya secara manual (mengimplementasikan sendiri).
 > > 2. Buat file `messages_id.properties` untuk bahasa Indonesia.
 >>> Contoh: Kemudian coba gunakan messageSourcenya.
 > > > pada package springbootmessagesource -> class SpringBootMessageSourceTest
+
+## Application Properties
+
+```
+Jika membuat project Spring menggunakan start.spring.io, otomatis terdapat file `application.properties`.
+File ini adalah pusat konfigurasi untuk aplikasi Spring Boot.
+```
+
+> Dalam file `application.properties`  dapat membuat konfigurasi apapun contoh:
+> application.name=Belajar Spring Boot
+
+> Bagiamana cara mengaksesnya?
+> 1. Cara paling sederhana => menggunakan Environment.
+> > Contoh: pada package appproperties -> class ApplicationPropertiesTest
+
+## Environment
+
+```
+- Environment digunakan untuk mengakses data di dalam Application Properties.
+- TETAPI Ecnvironment dapat digunakan untuk mengakses data 
+environtment variable pada sistem operasi.
+- EnvirontmentAware dapat digunakan untuk mendapatkan object Environment.
+```
+
+> > Contoh: pada package environment (test)-> class EnvironmentTest
+> > running di terminal: env | grep JAVA_HOME, ini hasilnya masih null
+> > untuk tau java homenya bisa running: readlink -f $(which java) pada terminal
+
+## Annotation @Value
+
+```
+- Annotation @Value digunakan untuk melakukan inject dari properties ke field yang kita tandai.
+- Jadi ini digunakan untuk mengambil data dari Application Properties.
+- Cara yakni:
+  menggunakan kode ${nama.properties.nya}
+  Secara otomatis akan diambil valuenya, dan langsung melakukan konversi juga.
+```
+
+> > Contohnya:
+> > update application.properties: application.name, application.version, dan application.production-mode
+> > Kemudian new package value -> class ValueTest
+
+```
+Selain untuk mengambil data dari Application Properties,
+@Value juga digunakan untuk mengambil data dari system properties atau environment variable.
+Contohnya untuk mengambil data dari environment variable JAVA_HOME, juga ada pada class ValueTest.
+```
+
+## Properties Source
+
+```
+Secara default, application properties hanya akan mengambil dari file application.properties yang ada di dalam classpath.
+```
+
+> > Tapi bagaimana jika kita ingin mengambil dari file lain?
+> > Contoh: menambahkan sample.properties di dalam folder resources.
+> > Cara mengambilnya:
+> > Tambahkan @PropertySource pada class yang akan mengambil data dari file tersebut.
+> > Kemudian buat new package propertiessource -> class PropertySourceTest
+
+## Test Properties Source
+
+```
+Saat membuat unit test, kadang kita ingin mengakses properties file yang berbeda untuk mencoba skenario yang berbeda.
+Ini akan sulit jika menggunakan @PropertySource.
+JADI kita dapat menggunakan @TestPropertySource.
+```
+
+> > Contoh: membuat properties di folder test, jadi bukan di main resources.
+> > 1. Buat folder resources di dalam folder test.
+> > 2. Buat file test.properties di dalam folder resources.
+> > 3. Buat package baru testpropertysource -> class TestPropertySourceTest
+> > 3. Kemudian pakai @TestPropertySource pada class yang akan mengakses file tersebut.
+> > 4. Ini pada class TestApplication
+
+## Profile
+
+```
+- Profile adalah fitur untuk menentukan component mana yang mau jalan.
+- Profile cocok ketika butuh component berbeda pada kondisi tertentu, misalnya:
+  Membuat component untuk koneksi ke Memory Database, tapi jika di Local misal, kita ingin
+  componentnya diganti dengan koneksi di memory aplikasi saja.
+- Untuk menandai sebuah komponen dengan informasi profile, kita dapat menggunakan annotation @Profile.
+``` 
+
+#### Profile Properties
+
+```
+- Untuk menentukan profile mana yang akan berjalan, kita bisa menentukan di application.properties]
+  dengan menggunakan key spring.profiles.active.
+- Dimana kita bisa menentukan active profile lebih dari satu.
+```
+
+> > Contoh: pada application.properties tambahkan spring.profiles.active=local
+> > Kemudian saat membuat @Component, kita bisa menambahkan annotation @Profile("local").
+> > pada class ProfileTest di package profile.
+
+#### Active Profile annotation
+
+```
+- Mengubah profile di application properties akan menyulitkan ketika membuat unit test untuk BEBERAPA profile.
+- Untuk mengubah profile di unit test, kita bisa menggunakan annotation ActiveProfiles.
+- JADI Aktif Profile bise digunakan untuk mengubah-ubah profile yang saat ini di jalankan.
+
+KESIMPULAN:
+profile bisa lebih dari satu, jadi bisa mengaktifkan beberapa profile sekaligus.
+```
+
+> > Contoh: pada package profile -> class ProfileTest (paling atas).
+
+#### Profile di Environment
+
+```
+- Untuk mendapatkan profile pada saat aplikasi berjalan, 
+  kita bisa menggunakan Environment.
+- Dalam environment terdapat method getActiveProfiles() untuk mendapatkan profile yang aktif.
+```
+
+> > Contoh: pada package profileenvironment -> class ProfileEnvironmentTest
+
+## Profile Properties File
+
+```
+
+```
