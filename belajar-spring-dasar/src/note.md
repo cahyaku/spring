@@ -640,13 +640,13 @@ Pastikan hanya terdapat 1 main class saja di project kita.
 > Jadi nanti dia akan masuk ke dalam folder target.
 > dan disana akan ada file JAR yang sudah dibundle dengan dependency-nya.
 >
-> > atau kalau tidak mau isi test (hanya inging membuat file jar nya) run => mvn clean package -DskipTests
+> > atau kalau tidak mau isi test (hanya ingin membuat file jar nya) run => mvn clean package -DskipTests
 > > Cek pada package target, akan ada file JAR yang sudah dibundle dengan dependency-nya,
 > > yakni belajar-spring-boot-0.0.1-SNAPSHOT.jar.
 > > Sehingga kita dapat running dengan perintah:
-> > java -jar target/belajar-spring-boot-0.0.1-SNAPSHOT.jar
+> >>  java -jar target/belajar-spring-dasar-0.0.1-SNAPSHOT.jar
 > > dan kita bisa isi langsung value-nya di command line, misalnya:
-> > java -jar target/belajar-spring-boot-0.0.1-SNAPSHOT.jar --profiles=cahya --profiles=kumala
+> > java -jar target/belajar-spring-dasar-0.0.1-SNAPSHOT.jar --profiles=cahya --profiles=kumala
 
 Hasilnya adalah:
 ![img_6.png](img_6.png)
