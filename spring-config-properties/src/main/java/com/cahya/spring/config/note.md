@@ -202,3 +202,25 @@ profile bisa lebih dari satu, jadi bisa mengaktifkan beberapa profile sekaligus.
 > > Misalnya akan membuat beberapa profile, misalnya default, production, dan test.
 > > Jadi tambahkan profile.default pada application.properties
 > > Buat komponen, pada folder test -> package profileproperties -> class ProfilePropertiesTest
+
+## Configuration Properties
+```
+- Fitur ini bisa digunakan untuk melakukan binding secara otomatis key yang ada di 
+  application.properties ke Java Bean property secara otomatis.
+- Binding adalah proses menghubungkan data dari file properties ke dalam Java Bean, 
+  atau menyamakan data dari file properties ke dalam Java Bean.
+- Tapi untuk menggunakan fitur ini, kita perlu menambahkan dependency 
+  spring-boot-configuration-processor pada file pom.xml.
+
+CARANYA:
+- Untuk menandai Java Bean agar otomatis di binding ke Application Properties,
+  kita bisa menggunakan annotation @ConfigurationProperties.
+- Kemudian perlu menambahkan prefix untuk key di application.propertiesnya.
+```
+>> Contoh: Class ApplicationProperties pada package properties -> 
+> > Tapi @ConfigurationProperties tidak akan bekerja jika tidak ada prefixnya dan tidak otomatis melakukan binding.
+> > Jadi perlu membuat metadata untuk bindingnya. Cara run di terminal: mvn clean compile.
+> > Kemudian cek di target/classes/META-INF/spring-configuration-metadata.json
+> > Tapi untuk menjalankannya, 
+> > kita perlu menambahkan annotation @EnableConfigurationProperties pada class yang akan menggunakan binding.
+> > Contoh: pada folder test -> package configurationproperties -> class ConfigurationPropertiesTest
