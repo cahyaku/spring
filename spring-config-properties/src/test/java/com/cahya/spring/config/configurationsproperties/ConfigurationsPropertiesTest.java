@@ -21,6 +21,14 @@ public class ConfigurationsPropertiesTest {
     Assertions.assertFalse(properties.isProductionMode());
     }
 
+    @Test
+    void testDatabaseProperties() {
+        Assertions.assertEquals("cahya", properties.getDatabase().getUsername());
+        Assertions.assertEquals("password", properties.getDatabase().getPassword());
+        Assertions.assertEquals("belajar", properties.getDatabase().getDatabase());
+        Assertions.assertEquals("jdbc:contoh", properties.getDatabase().getUrl());
+    }
+
     /**
      * Tidak perli @Compenent atau @Bean lagi karena sudah EnableConfigurationProperties-nya.
      * Jadi spring boot otomatis akan membuatkan bean-nya.

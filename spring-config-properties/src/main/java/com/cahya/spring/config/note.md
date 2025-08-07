@@ -224,3 +224,18 @@ CARANYA:
 > > Tapi untuk menjalankannya, 
 > > kita perlu menambahkan annotation @EnableConfigurationProperties pada class yang akan menggunakan binding.
 > > Contoh: pada folder test -> package configurationproperties -> class ConfigurationPropertiesTest
+
+## Complex Configuration Properties
+```
+- Configuration Properties mendukung Java Bean yang kompleks.
+- Misalnya yang berisikan Java Bean object lain.
+- Ini memungkinkan pembuatan Configuration properties menjadi lebih mudah,
+  karena tidak perlu dilakukan secara manual.
+```
+> Misalnya kita memiliki DatabaseProperties yang  memiliki object kompleks.
+> Kita coba:
+> > 1. Buat class DatabaseProperties, saya gabung 1 file saja di class ApplicationProperties -> package properties -> main.
+> > 2. Jadi ini perlu di compile ulang, karena ada perubahan di class ApplicationProperties => run = mvn clean compile.
+> > 3. Kemudian cek di target/classes/META-INF/spring-configuration-metadata.json
+> > 4. Kemudian tambahkan pada apllication.properties, untuk databasenya.
+> > 5. Kemudian update unit testnya di class ConfigurationPropertiesTest
